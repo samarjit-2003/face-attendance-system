@@ -7,38 +7,51 @@ import face_recognition
 
 
 def get_button(window, text, color, command, fg='white'):
+    color_map = {
+        'green': '#4CAF50',
+        'red': '#F44336',
+        'gray': '#607D8B'
+    }
+    hex_color = color_map.get(color, color)
+
     button = tk.Button(
                         window,
-                        text=text,
-                        activebackground="black",
+                        text=text.upper(),
+                        activebackground="#333333",
                         activeforeground="white",
-                        fg=fg,
-                        bg=color,
+                        fg=fg if color != 'gray' else 'white',
+                        bg=hex_color,
                         command=command,
                         height=2,
                         width=20,
-                        font=('Helvetica bold', 20)
+                        font=('Segoe UI', 12, 'bold'),
+                        relief=tk.FLAT,
+                        cursor="hand2"
                     )
 
     return button
 
 
 def get_img_label(window):
-    label = tk.Label(window)
+    label = tk.Label(window, bg="#1E1E1E")
     label.grid(row=0, column=0)
     return label
 
 
 def get_text_label(window, text):
     label = tk.Label(window, text=text)
-    label.config(font=("sans-serif", 21), justify="left")
+    label.config(font=("Segoe UI", 16, "bold"), justify="left", bg="#1E1E1E", fg="#FFFFFF")
     return label
 
 
 def get_entry_text(window):
     inputtxt = tk.Text(window,
-                       height=2,
-                       width=15, font=("Arial", 32))
+                       height=1,
+                       width=15, font=("Segoe UI", 24),
+                       bg="#333333", fg="#FFFFFF",
+                       insertbackground="#FFFFFF",
+                       relief=tk.FLAT,
+                       padx=10, pady=10)
     return inputtxt
 
 

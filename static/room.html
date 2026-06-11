@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Room - AuraAccess</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .room-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+        }
+
+        .room-icon {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        #welcomeText {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <h1><span class="highlight">Aura</span>Access</h1>
+            <p>Next-Gen Face Recognition System</p>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <div class="glass-panel room-container">
+                <div class="room-icon">🛋️</div>
+                <h2 id="welcomeText">Welcome inside!</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 400px;">
+                    You have successfully passed the face recognition check and the smart door has granted you access.
+                </p>
+                <button id="exitRoomBtn" class="btn danger-btn">Leave Room (Log Out)</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const user = params.get('user');
+
+        if (user) {
+            document.getElementById('welcomeText').textContent = `Welcome inside, ${user}!`;
+        }
+
+        document.getElementById('exitRoomBtn').addEventListener('click', async () => {
+            window.location.href = '/';
+        });
+    </script>
+</body>
+
+</html>

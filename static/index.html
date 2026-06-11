@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Attendance System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <h1><span class="highlight">Aura</span>Access</h1>
+            <p>Next-Gen Face Recognition System</p>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Camera Section -->
+            <div class="camera-card glass-panel">
+                <div class="video-container">
+                    <video id="webcam" autoplay playsinline></video>
+                    <div class="camera-overlay">
+                        <div class="scan-line"></div>
+                    </div>
+                    <div id="doorUnlockOverlay" class="door-unlock-overlay hidden">
+                        <h2>DOOR UNLOCKED</h2>
+                        <p id="unlockUserText"></p>
+                    </div>
+                </div>
+
+                <div class="status-container">
+                    <p id="statusMessage">Ready to authenticate</p>
+                </div>
+
+                <div class="actions">
+                    <button id="loginBtn" class="btn primary-btn">Login</button>
+                    <button id="logoutBtn" class="btn danger-btn">Logout</button>
+                    <button id="registerBtn" class="btn secondary-btn">Register</button>
+                </div>
+
+                <div class="auto-mode-container">
+                    <span>Door Mode (Auto-Scan)</span>
+                    <label class="switch">
+                        <input type="checkbox" id="autoModeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Admin Section Button -->
+            <div class="admin-access">
+                <button id="openAdminBtn" class="btn ghost-btn">Admin Panel</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content glass-panel">
+            <h2>Register New User</h2>
+            <p>Ensure your face is clearly visible.</p>
+            <input type="text" id="newUsername" placeholder="Enter Username" class="glass-input">
+            <div class="modal-actions">
+                <button id="submitRegisterBtn" class="btn primary-btn">Capture & Register</button>
+                <button id="closeRegisterBtn" class="btn ghost-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content glass-panel">
+            <h2>Admin Login</h2>
+            <input type="password" id="adminPassword" placeholder="Enter Admin Password" class="glass-input">
+            <div class="modal-actions">
+                <button id="submitAdminLoginBtn" class="btn primary-btn">Login</button>
+                <button id="closeAdminLoginBtn" class="btn ghost-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Modal -->
+    <div id="adminDashboardModal" class="modal">
+        <div class="modal-content glass-panel large-modal">
+            <h2>Admin Dashboard</h2>
+            <p>Pending Verifications</p>
+            <div class="pending-list-header">
+                <span>Name</span>
+                <span>Actions</span>
+            </div>
+            <div id="pendingUsersList" class="pending-list">
+                <!-- User items will be injected here -->
+            </div>
+            <div class="modal-actions">
+                <button id="closeAdminDashboardBtn" class="btn ghost-btn">Close Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast"></div>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>
